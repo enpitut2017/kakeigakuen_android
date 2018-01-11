@@ -14,7 +14,7 @@
         android:inputType="textPersonName"
         android:text="email"
         tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="316dp" />
+        tools:layout_editor_absoluteY="267dp" />
 
     <EditText
         android:id="@+id/password"
@@ -22,6 +22,14 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="84dp"
-        tools:layout_editor_absoluteY="393dp" />
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="349dp" />
+
+    <Button
+        android:id="@+id/Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="431dp" />
 </android.support.constraint.ConstraintLayout>
