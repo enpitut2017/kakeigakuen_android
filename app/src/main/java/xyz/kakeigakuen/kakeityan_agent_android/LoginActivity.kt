@@ -1,5 +1,6 @@
 package xyz.kakeigakuen.kakeityan_agent_android
 
+import android.content.SharedPreferences
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -19,8 +20,7 @@ class LoginActivity : RxAppCompatActivity() {
         val email: EditText = findViewById(R.id.email)
         val password: EditText = findViewById(R.id.password)
         val loginutil = LoginUtil()
-        if ( !loginutil.login(email.text.toString(), password.text.toString(), view)) {
-            Log.e("login", "failed!")
-        }
+        loginutil.login(email.text.toString(), password.text.toString(), view)
+        Log.i("result", loginutil.set_result.toString())
     }
 }

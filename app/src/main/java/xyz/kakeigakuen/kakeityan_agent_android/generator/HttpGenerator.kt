@@ -13,8 +13,8 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 
 class HttpGenerator {
-    val gson: Gson
-    val retrofit: Retrofit
+    var gson: Gson
+    var retrofit: Retrofit
 
     constructor() {
         Log.i("HttpGenerator", "setup start")

@@ -17,16 +17,20 @@ class LoginUtil {
     var user: User
     val loginclient: LoginClient
     val httpgenerator: HttpGenerator
+    var set_flag: Boolean
+    var set_result: String
 
     constructor() {
         Log.i("LoginUtil", "setup start")
         user = User("", 0)
         httpgenerator = HttpGenerator()
         loginclient = httpgenerator.retrofit.create(LoginClient::class.java)
+        set_flag = false
+        set_result = "failed"
         Log.i("LoginUtil", "setup finish")
     }
 
-    fun login(email: String, password: String, view: View): Boolean {
+    fun login(email: String, password: String, view: View) {
         var result = ""
         Log.i("action", "loginstart")
         loginclient.login(email, password)
@@ -34,16 +38,18 @@ class LoginUtil {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(view)
                 .subscribe({
-                    Log.i("action", "login_success")
-                    result = "success"
-                    user = it
+                    if (it.token.toString() != "error") {
+                        Log.i("action", "login_success")
+                        this.set_result = "success"
+                        this.set_flag = true
+                        user = it
+                    } else {
+                        Log.i("action", "you miss email or password")
+                    }
                 }, {
                     Log.i("action", "login_failed")
-                    result = "error"
+                    this.set_result = "error"
+                    this.set_flag = false
                 })
-        if (result != "success") return false
-        Log.i("token", user.token)
-        Log.i("budget", user.budget.toString())
-        return true
     }
 }

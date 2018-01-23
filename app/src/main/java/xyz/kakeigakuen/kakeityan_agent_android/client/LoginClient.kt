@@ -13,6 +13,8 @@ import xyz.kakeigakuen.kakeityan_agent_android.model.User
 
 interface LoginClient {
 
+    @FormUrlEncoded
+
     @POST("/api/login")
-    fun login(@Query("email") email: String, @Query("password") password: String): Observable<User>
+    fun login(@Field("email") email: String, @Field("password") password: String): Observable<User>
 }
