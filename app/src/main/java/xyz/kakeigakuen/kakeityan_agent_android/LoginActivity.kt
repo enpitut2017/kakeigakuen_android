@@ -20,6 +20,12 @@ class LoginActivity : RxAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val prefer = getSharedPreferences("user", Context.MODE_PRIVATE)
+        if (prefer.getString("token", "0") != "0") {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
         setContentView(R.layout.activity_login)
     }
 
