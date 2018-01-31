@@ -24,6 +24,7 @@ class LoginActivity : RxAppCompatActivity() {
         val prefer = getSharedPreferences("user", Context.MODE_PRIVATE)
         if (prefer.getString("token", "0") != "0") {
             val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
             startActivity(intent)
         }
         setContentView(R.layout.activity_login)
@@ -49,6 +50,7 @@ class LoginActivity : RxAppCompatActivity() {
                         editor.putInt("budget", it.budget)
                         editor.commit()
                         val intent = Intent(this, MainActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
                     } else {
                         Log.i("action", "you miss email or password")
