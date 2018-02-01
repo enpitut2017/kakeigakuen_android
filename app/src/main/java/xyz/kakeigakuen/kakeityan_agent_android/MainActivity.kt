@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.RecognizerIntent
 import android.util.Log
@@ -18,7 +17,6 @@ import rx.schedulers.Schedulers
 import xyz.kakeigakuen.kakeityan_agent_android.client.BookClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
 import xyz.kakeigakuen.kakeityan_agent_android.util.BookParser
-import java.util.ArrayList
 
 class MainActivity : RxAppCompatActivity() {
 
@@ -29,8 +27,10 @@ class MainActivity : RxAppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val prefer = getSharedPreferences("user", Context.MODE_PRIVATE)
-        var budget: TextView = findViewById(R.id.budget)
+        val budget: TextView = findViewById(R.id.budget)
         budget.text = prefer.getInt("budget", 0).toString()
+        val rest: TextView = findViewById(R.id.rest)
+        rest.text = prefer.getInt("rest", 0).toString()
     }
 
     fun bookPost(view: View) {
@@ -41,7 +41,7 @@ class MainActivity : RxAppCompatActivity() {
         val postclient = httpgenerator.retrofit.create(BookClient::class.java)
 
         Log.i("action", "book post start")
-        postclient.post(cost.text.toString(), prefer.getString("token", "0"))
+        postclient.post(cost.text.toString(), item.text.toString(), prefer.getString("token", "0"))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(view)
@@ -50,9 +50,16 @@ class MainActivity : RxAppCompatActivity() {
                         Log.i("action", "post_success")
                         val editor = prefer.edit()
                         editor.putInt("budget", it.budget)
+                        editor.putInt("rest", it.rest)
                         editor.commit()
-                        var budget: TextView = findViewById(R.id.budget)
+                        val budget: TextView = findViewById(R.id.budget)
                         budget.text = prefer.getInt("budget", 0).toString()
+                        val rest: TextView = findViewById(R.id.rest)
+                        rest.text = prefer.getInt("rest", 0).toString()
+                        val item: EditText = findViewById(R.id.item)
+                        val cost: EditText = findViewById(R.id.cost)
+                        item.setText("")
+                        cost.setText("")
                     } else {
                         Log.i("action", "you miss email or password")
                     }
@@ -82,5 +89,17 @@ class MainActivity : RxAppCompatActivity() {
             cost.setText(parser.cost)
         }
         super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    fun logout (view: View) {
+        val prefer = getSharedPreferences("user", Context.MODE_PRIVATE)
+        val editor = prefer.edit()
+        editor.putString("token", "0")
+        editor.putInt("budget", 0)
+        editor.putInt("rest", 0)
+        editor.commit()
+        val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
     }
 }

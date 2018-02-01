@@ -48,6 +48,7 @@ class LoginActivity : RxAppCompatActivity() {
                         val editor = prefer.edit()
                         editor.putString("token", it.token)
                         editor.putInt("budget", it.budget)
+                        editor.putInt("rest", it.rest)
                         editor.commit()
                         val intent = Intent(this, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
