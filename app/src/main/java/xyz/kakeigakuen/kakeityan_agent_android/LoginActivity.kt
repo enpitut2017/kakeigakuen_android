@@ -15,6 +15,8 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import xyz.kakeigakuen.kakeityan_agent_android.client.LoginClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
+import xyz.kakeigakuen.kakeityan_agent_android.util.LoginError
+import xyz.kakeigakuen.kakeityan_agent_android.util.NetworkError
 
 class LoginActivity : RxAppCompatActivity() {
 
@@ -48,15 +50,20 @@ class LoginActivity : RxAppCompatActivity() {
                         val editor = prefer.edit()
                         editor.putString("token", it.token)
                         editor.putInt("budget", it.budget)
+                        editor.putInt("rest", it.rest)
                         editor.commit()
                         val intent = Intent(this, MainActivity::class.java)
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
                     } else {
                         Log.i("action", "you miss email or password")
+                        val loginerror = LoginError()
+                        loginerror.show(this)
                     }
                 }, {
                     Log.i("action", "login_failed")
+                    val networkerror = NetworkError()
+                    networkerror.show(this)
                 })
     }
 }

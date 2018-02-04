@@ -15,5 +15,5 @@ interface BookClient {
     @FormUrlEncoded
 
     @POST("/api/books")
-    fun post(@Field("costs") costs: String, @Field("token") token: String): Observable<User>
+    fun post(@Field("costs") costs: String, @Field("item") item: String, @Field("token") token: String): Observable<User>
 }
