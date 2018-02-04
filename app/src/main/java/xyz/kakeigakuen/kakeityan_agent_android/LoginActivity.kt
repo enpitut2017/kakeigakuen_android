@@ -1,8 +1,10 @@
 package xyz.kakeigakuen.kakeityan_agent_android
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +19,7 @@ import xyz.kakeigakuen.kakeityan_agent_android.client.LoginClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
 import xyz.kakeigakuen.kakeityan_agent_android.util.LoginError
 import xyz.kakeigakuen.kakeityan_agent_android.util.NetworkError
+import xyz.kakeigakuen.kakeityan_agent_android.util.SignUpError
 
 class LoginActivity : RxAppCompatActivity() {
 
@@ -65,5 +68,16 @@ class LoginActivity : RxAppCompatActivity() {
                     val networkerror = NetworkError()
                     networkerror.show(this)
                 })
+    }
+
+    fun onSignUp(view: View) {
+        try {
+            val uri = Uri.parse("https://kakeigakuen.xyz/signup")
+            val i = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(i)
+        }catch (e: ActivityNotFoundException) {
+            val signuperror = SignUpError()
+            signuperror.show(this)
+        }
     }
 }

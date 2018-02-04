@@ -8,7 +8,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "xyz.kakeigakuen.kakeityan_agent_android"
-        minSdkVersion 22
+        minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
