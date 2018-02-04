@@ -8,19 +8,34 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="MainEditTextStyle" parent="Widget.AppCompat.EditText">
+    <style name="LoginEditTextStyle" parent="Widget.AppCompat.EditText">
         <item name="android:textColorHint">@color/placeholder</item>
         <item name="android:textColor">@color/placeholder</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 
-    <style name="MainEditTextColorControle">
+    <style name="LoginEditTextColorControle">
         <item name="android:colorControlNormal">@color/placeholder</item>
     </style>
 
     <style name="button_A" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/colorMain</item>
         <item name="android:background">@color/A_back</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="MainEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColorHint">@color/mainplaceholder</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="MainEditTextColorControle">
+        <item name="android:colorControlNormal">@color/mainplaceholder</item>
+    </style>
+
+    <style name="button_B" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/A_back</item>
+        <item name="android:background">@color/colorMain</item>
         <item name="android:fontFamily">sans-serif</item>
     </style>
 

@@ -8,7 +8,7 @@
     tools:context="xyz.kakeigakuen.kakeityan_agent_android.LoginActivity">
 
     <EditText
-        style="@style/MainEditTextStyle"
+        style="@style/LoginEditTextStyle"
         android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         android:ems="10"
         android:hint="@string/email_hint"
         android:inputType="textPersonName"
-        android:theme="@style/MainEditTextColorControle"
+        android:theme="@style/LoginEditTextColorControle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -28,7 +28,7 @@
         app:layout_constraintVertical_bias="0.545" />
 
     <EditText
-        style="@style/MainEditTextStyle"
+        style="@style/LoginEditTextStyle"
         android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
         android:ems="10"
         android:hint="@string/password_hint"
         android:inputType="textPassword"
-        android:theme="@style/MainEditTextColorControle"
+        android:theme="@style/LoginEditTextColorControle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"

@@ -6,4 +6,6 @@
     <color name="colorMain">#3ba89a</color>
     <color name="placeholder">#ffffff</color>
     <color name="A_back">#ffffff</color>
+    <color name="date">#ffffff</color>
+    <color name="mainplaceholder">#a8a8a8</color>
 </resources>
