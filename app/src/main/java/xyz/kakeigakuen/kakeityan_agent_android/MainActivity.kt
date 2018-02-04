@@ -17,7 +17,9 @@ import rx.schedulers.Schedulers
 import xyz.kakeigakuen.kakeityan_agent_android.client.BookClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
 import xyz.kakeigakuen.kakeityan_agent_android.util.BookDialog
+import xyz.kakeigakuen.kakeityan_agent_android.util.BookError
 import xyz.kakeigakuen.kakeityan_agent_android.util.BookParser
+import xyz.kakeigakuen.kakeityan_agent_android.util.NetworkError
 
 class MainActivity : RxAppCompatActivity() {
 
@@ -68,10 +70,14 @@ class MainActivity : RxAppCompatActivity() {
                         val bookdialog = BookDialog()
                         bookdialog.show(this, send_itme, send_cost)
                     } else {
-                        Log.i("action", "you miss email or password")
+                        Log.i("action", "miss register item")
+                        val bookerror = BookError()
+                        bookerror.show(this)
                     }
                 }, {
-                    Log.i("action", "login_failed")
+                    Log.i("action", "networkerror")
+                    val networkerror = NetworkError()
+                    networkerror.show(this)
                 })
     }
 

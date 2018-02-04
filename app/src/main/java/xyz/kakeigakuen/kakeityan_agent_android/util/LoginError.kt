@@ -6,11 +6,10 @@ import xyz.kakeigakuen.kakeityan_agent_android.generator.DialogGenerator
 /**
  * Created by paseri on 2018/02/04.
  */
-class BookDialog : DialogGenerator() {
-
-    fun show(activity: Activity, item: String, cost: String) {
-        val title = "商品の登録"
-        val text = item + " (" + cost + "円) を登録しました"
+class LoginError: DialogGenerator() {
+    fun show(activity: Activity) {
+        val title = "ログイン"
+        val text = "ログインに失敗しました。メールアドレスとパスワードをお確かめください"
         this.diarog_show(activity, title, text)
     }
 }
