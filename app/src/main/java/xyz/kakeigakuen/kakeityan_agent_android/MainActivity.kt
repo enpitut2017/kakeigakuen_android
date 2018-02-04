@@ -16,6 +16,7 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import xyz.kakeigakuen.kakeityan_agent_android.client.BookClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
+import xyz.kakeigakuen.kakeityan_agent_android.util.BookDialog
 import xyz.kakeigakuen.kakeityan_agent_android.util.BookParser
 
 class MainActivity : RxAppCompatActivity() {
@@ -40,6 +41,8 @@ class MainActivity : RxAppCompatActivity() {
         val httpgenerator = HttpGenerator()
         val postclient = httpgenerator.retrofit.create(BookClient::class.java)
 
+        if ((cost.text.toString() == "") || (item.text.toString() == "")) return
+
         Log.i("action", "book post start")
         postclient.post(cost.text.toString(), item.text.toString(), prefer.getString("token", "0"))
                 .subscribeOn(Schedulers.io())
@@ -58,8 +61,12 @@ class MainActivity : RxAppCompatActivity() {
                         rest.text = prefer.getInt("rest", 0).toString()
                         val item: EditText = findViewById(R.id.item)
                         val cost: EditText = findViewById(R.id.cost)
+                        val send_itme = item.text.toString()
+                        val send_cost = cost.text.toString()
                         item.setText("")
                         cost.setText("")
+                        val bookdialog = BookDialog()
+                        bookdialog.show(this, send_itme, send_cost)
                     } else {
                         Log.i("action", "you miss email or password")
                     }
