@@ -3,6 +3,7 @@
     <string name="email_hint">メールアドレス</string>
     <string name="password_hint">パスワード</string>
     <string name="login">ログイン</string>
+    <string name="signup">新規作成</string>
     <string name="date">日付</string>
     <string name="logout">sign out</string>
     <string name="budget">予算</string>
