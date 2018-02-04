@@ -44,7 +44,7 @@ class MainActivity : RxAppCompatActivity() {
         val budget: TextView = findViewById(R.id.budget)
         budget.text = prefer.getInt("budget", 0).toString()
         val rest: TextView = findViewById(R.id.rest)
-        rest.text = prefer.getInt("rest", 0).toString()
+        rest.text = prefer.getInt("rest", 0).toString() + "円"
         val df: DateFormat = SimpleDateFormat("yyyy/MM/dd")
         val create_date = Date(System.currentTimeMillis())
         val date: TextView = findViewById(R.id.date)
@@ -76,7 +76,7 @@ class MainActivity : RxAppCompatActivity() {
                         val budget: TextView = findViewById(R.id.budget)
                         budget.text = prefer.getInt("budget", 0).toString()
                         val rest: TextView = findViewById(R.id.rest)
-                        rest.text = prefer.getInt("rest", 0).toString()
+                        rest.text = prefer.getInt("rest", 0).toString() + "円"
                         val item: EditText = findViewById(R.id.item)
                         val cost: EditText = findViewById(R.id.cost)
                         val send_itme = item.text.toString()
@@ -141,10 +141,10 @@ class MainActivity : RxAppCompatActivity() {
         pieChart.holeRadius = 80f       // 真ん中の穴の大きさ(%指定)
         pieChart.setHoleColorTransparent(true)
         pieChart.transparentCircleRadius = 55f
-        pieChart.rotationAngle = 120f          // 開始位置の調整
+        pieChart.rotationAngle = 90f          // 開始位置の調整
         pieChart.isRotationEnabled = false      // 回転可能かどうか
         pieChart.legend.isEnabled = false   //凡例
-        pieChart.isHighlightEnabled = false
+        pieChart.isHighlightEnabled = false //数値
         pieChart.setDescription("")
         pieChart.data = createPieChartData()
 
