@@ -17,16 +17,13 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import xyz.kakeigakuen.kakeityan_agent_android.client.BookClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
-import xyz.kakeigakuen.kakeityan_agent_android.util.BookDialog
-import xyz.kakeigakuen.kakeityan_agent_android.util.BookError
-import xyz.kakeigakuen.kakeityan_agent_android.util.BookParser
-import xyz.kakeigakuen.kakeityan_agent_android.util.NetworkError
 import com.github.mikephil.charting.utils.PercentFormatter
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.Entry
+import xyz.kakeigakuen.kakeityan_agent_android.util.*
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -67,8 +64,7 @@ class MainActivity : RxAppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(view)
                 .subscribe({
-                    if (it.token.toString() != "error") {
-                        Log.i("action", "post_success")
+                    if ( ! it.error) {
                         val editor = prefer.edit()
                         editor.putInt("budget", it.budget)
                         editor.putInt("rest", it.rest)
@@ -87,12 +83,11 @@ class MainActivity : RxAppCompatActivity() {
                         val bookdialog = BookDialog()
                         bookdialog.show(this, send_itme, send_cost)
                     } else {
-                        Log.i("action", "miss register item")
+                        val hashmaptostring = HashMapToString()
                         val bookerror = BookError()
-                        bookerror.show(this)
+                        bookerror.show(this, hashmaptostring.ChangeToString(it.message))
                     }
                 }, {
-                    Log.i("action", "networkerror")
                     val networkerror = NetworkError()
                     networkerror.show(this)
                 })

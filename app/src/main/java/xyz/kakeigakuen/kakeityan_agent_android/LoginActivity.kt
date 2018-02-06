@@ -47,8 +47,7 @@ class LoginActivity : RxAppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(view)
                 .subscribe({
-                    if (it.token.toString() != "error") {
-                        Log.i("action", "login_success")
+                    if ( ! it.error) {
                         val prefer = getSharedPreferences("user", Context.MODE_PRIVATE)
                         val editor = prefer.edit()
                         editor.putString("token", it.token)
@@ -59,12 +58,10 @@ class LoginActivity : RxAppCompatActivity() {
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
                     } else {
-                        Log.i("action", "you miss email or password")
                         val loginerror = LoginError()
                         loginerror.show(this)
                     }
                 }, {
-                    Log.i("action", "login_failed")
                     val networkerror = NetworkError()
                     networkerror.show(this)
                 })
