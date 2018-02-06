@@ -128,6 +128,12 @@ class MainActivity : RxAppCompatActivity() {
         startActivity(intent)
     }
 
+    fun list (view: View) {
+        val intent = Intent(this, ListActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+    }
+
     // 円グラフ表示用
     private fun createPieChart() {
         val pieChart = findViewById<View>(R.id.pie_chart) as PieChart
