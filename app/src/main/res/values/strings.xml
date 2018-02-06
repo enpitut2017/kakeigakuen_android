@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">kakeityan_agent_android</string>
+    <string name="app_name">家計学園</string>
+    <string name="email_hint">メールアドレス</string>
+    <string name="password_hint">パスワード</string>
+    <string name="login">ログイン</string>
+    <string name="signup">新規作成</string>
+    <string name="date">日付</string>
+    <string name="logout">sign out</string>
+    <string name="budget">予算</string>
+    <string name="rest">残高</string>
+    <string name="item">用途</string>
+    <string name="cost">値段</string>
+    <string name="send">送信</string>
 </resources>

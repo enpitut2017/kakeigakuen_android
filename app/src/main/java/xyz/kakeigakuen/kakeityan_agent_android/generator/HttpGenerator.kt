@@ -17,12 +17,10 @@ class HttpGenerator {
     var retrofit: Retrofit
 
     constructor() {
-        Log.i("HttpGenerator", "setup start")
         gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
         retrofit = Retrofit.Builder()
                 .baseUrl("https://kakeigakuen.xyz")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create()).build()
-        Log.i("HttpGenerator", "setup finish")
     }
 }

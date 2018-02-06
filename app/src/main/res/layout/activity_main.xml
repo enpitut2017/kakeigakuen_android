@@ -6,6 +6,30 @@
     android:layout_height="match_parent"
     tools:context="xyz.kakeigakuen.kakeityan_agent_android.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/item"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date"
+        app:layout_constraintVertical_bias="1.0">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pie_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+
     <TextView
         android:id="@+id/rest"
         android:layout_width="wrap_content"
@@ -14,104 +38,112 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="残高"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/rest"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.417"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189" />
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.557" />
 
     <TextView
         android:id="@+id/date"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:text="日付"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/budget" />
-
-    <Button
-        android:id="@+id/mic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="0dp"
+        android:layout_marginBottom="412dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:onClick="speechRecognizer"
-        android:text="マイク"
+        android:background="@color/colorMain"
+        android:paddingTop="35dp"
+        android:text="@string/date"
+        android:textAlignment="center"
+        android:textColor="@color/date"
+        android:textSize="18.7sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date"
-        app:layout_constraintVertical_bias="0.816" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/button_B"
+        android:layout_width="207dp"
+        android:layout_height="34dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:onClick="bookPost"
-        android:text="送信"
-        app:layout_constraintBottom_toTopOf="@+id/mic"
+        android:text="@string/send"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cost"
-        app:layout_constraintVertical_bias="0.714" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="商品名"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date" />
-
-    <EditText
-        android:id="@+id/cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="値段"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item" />
-
-    <Button
-        android:id="@+id/button"
+        style="@style/MainEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="@string/item"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="8sp"
+        android:textSize="12sp"
+        android:theme="@style/MainEditTextColorControle"
+        app:layout_constraintBottom_toTopOf="@+id/cost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/cost"
+        style="@style/MainEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="@string/cost"
+        android:inputType="textPersonName"
+        android:lineSpacingExtra="8sp"
+        android:textSize="12sp"
+        android:theme="@style/MainEditTextColorControle"
+        app:layout_constraintBottom_toTopOf="@+id/send"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/button_B"
+        android:layout_width="70dp"
+        android:layout_height="40dp"
+        android:layout_margin="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:background="#00000000"
         android:onClick="logout"
-        android:text="logout"
+        android:text="@string/logout"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintHorizontal_bias="0.975"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.939" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/budget"
@@ -121,12 +153,43 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="予算"
+        android:text="@string/budget"
+        app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.98" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="残り予算"
+        app:layout_constraintBottom_toTopOf="@+id/rest"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+        app:layout_constraintVertical_bias="0.96" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="76dp"
+        android:layout_height="76dp"
+        android:layout_margin="4dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@null"
+        android:onClick="speechRecognizer"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189" />
+        app:srcCompat="@drawable/mic" />
 
 </android.support.constraint.ConstraintLayout>

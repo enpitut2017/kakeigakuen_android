@@ -1,8 +1,10 @@
 package xyz.kakeigakuen.kakeityan_agent_android
 
+import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +17,9 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import xyz.kakeigakuen.kakeityan_agent_android.client.LoginClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
+import xyz.kakeigakuen.kakeityan_agent_android.util.LoginError
+import xyz.kakeigakuen.kakeityan_agent_android.util.NetworkError
+import xyz.kakeigakuen.kakeityan_agent_android.util.SignUpError
 
 class LoginActivity : RxAppCompatActivity() {
 
@@ -42,8 +47,7 @@ class LoginActivity : RxAppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .bindToLifecycle(view)
                 .subscribe({
-                    if (it.token.toString() != "error") {
-                        Log.i("action", "login_success")
+                    if ( ! it.error) {
                         val prefer = getSharedPreferences("user", Context.MODE_PRIVATE)
                         val editor = prefer.edit()
                         editor.putString("token", it.token)
@@ -54,10 +58,23 @@ class LoginActivity : RxAppCompatActivity() {
                         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
                         startActivity(intent)
                     } else {
-                        Log.i("action", "you miss email or password")
+                        val loginerror = LoginError()
+                        loginerror.show(this)
                     }
                 }, {
-                    Log.i("action", "login_failed")
+                    val networkerror = NetworkError()
+                    networkerror.show(this)
                 })
+    }
+
+    fun onSignUp(view: View) {
+        try {
+            val uri = Uri.parse("https://kakeigakuen.xyz/signup")
+            val i = Intent(Intent.ACTION_VIEW, uri)
+            startActivity(i)
+        }catch (e: ActivityNotFoundException) {
+            val signuperror = SignUpError()
+            signuperror.show(this)
+        }
     }
 }
