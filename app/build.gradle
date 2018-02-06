@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "xyz.kakeigakuen.kakeityan_agent_android"
+        applicationId "xyz.kakeigakuen.kakeityan_agent"
         minSdkVersion 20
         targetSdkVersion 26
         versionCode 1
