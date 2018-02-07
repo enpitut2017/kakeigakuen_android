@@ -109,9 +109,11 @@ class MainActivity : RxAppCompatActivity() {
             val item: EditText = findViewById(R.id.item)
             val cost: EditText = findViewById(R.id.cost)
             var result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
-            val parser = BookParser(result[0])
-            item.setText(parser.item)
-            cost.setText(parser.cost)
+            if (result.size != 0) {
+                val parser = BookParser(result[0])
+                item.setText(parser.item)
+                cost.setText(parser.cost)
+            }
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
