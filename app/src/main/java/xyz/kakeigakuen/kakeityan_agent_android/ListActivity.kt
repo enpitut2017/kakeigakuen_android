@@ -16,7 +16,9 @@ import rx.schedulers.Schedulers
 import xyz.kakeigakuen.kakeityan_agent_android.client.ListClient
 import xyz.kakeigakuen.kakeityan_agent_android.client.LoginClient
 import xyz.kakeigakuen.kakeityan_agent_android.generator.HttpGenerator
+import xyz.kakeigakuen.kakeityan_agent_android.util.BaseSectionAdapter
 import xyz.kakeigakuen.kakeityan_agent_android.util.ListError
+import xyz.kakeigakuen.kakeityan_agent_android.util.SectionGenerator
 import java.text.SimpleDateFormat
 
 class ListActivity : RxAppCompatActivity() {
@@ -43,7 +45,8 @@ class ListActivity : RxAppCompatActivity() {
             .bindToLifecycle(view)
             .subscribe({
                 if ( ! it.error) {
-                    val listadapter = xyz.kakeigakuen.kakeityan_agent_android.util.ListAdapter(this, it.list)
+                    val sectiongenerator = SectionGenerator(it.list)
+                    val listadapter = BaseSectionAdapter(this, sectiongenerator.listHeader, sectiongenerator.listBody)
                     listview.adapter = listadapter
                 } else {
                     Log.i("action", "you miss email or password")
