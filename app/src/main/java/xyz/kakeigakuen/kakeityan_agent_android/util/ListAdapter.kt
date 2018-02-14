@@ -36,12 +36,12 @@ class ListAdapter(val context: Context, val books: Array<Book>): BaseAdapter() {
     }
 
     override fun getView(position: Int, inconvertView: View?, parent: ViewGroup?): View {
-        val sdf = SimpleDateFormat("yyyy-MM-dd")
+        val sdf = SimpleDateFormat("MM-dd")
         var convertView = inconvertView
-        convertView = layoutInflater.inflate(R.layout.activity_list, parent, false)
+        convertView = layoutInflater.inflate(R.layout.listgenerator, parent, false)
         convertView.findViewById<TextView>(R.id.item).text = books.get(position).item.toString()
         convertView.findViewById<TextView>(R.id.cost).text = books.get(position).cost.toString()
-        convertView.findViewById<TextView>(R.id.date).text = sdf.format(books.get(position).time)
+        convertView.findViewById<TextView>(R.id.date).text = sdf.format(books.get(position).time).toString()
 
         return convertView
     }

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ListAdapter
 import android.widget.ListView
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity
@@ -23,6 +24,8 @@ class ListActivity : RxAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
+        var view : ViewGroup = findViewById(android.R.id.content)
+        listUpdate(view.getChildAt(0))
     }
 
     fun listUpdate(view: View) {
