@@ -97,7 +97,7 @@ class MainActivity : RxAppCompatActivity() {
         try {
             intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
             intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
-            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "RecognizeSpeechEx")
+            intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "何を購入しましたか?")
             startActivityForResult(intent, RECEST_CODE)
         } catch (e: ActivityNotFoundException) {
             Log.e("action", e.toString())
@@ -126,6 +126,12 @@ class MainActivity : RxAppCompatActivity() {
         editor.putInt("rest", 0)
         editor.commit()
         val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        startActivity(intent)
+    }
+
+    fun list (view: View) {
+        val intent = Intent(this, ListActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
     }
