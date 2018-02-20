@@ -33,6 +33,14 @@
         <item name="android:colorControlNormal">@color/mainplaceholder</item>
     </style>
 
+    <style name="ListBody">
+        <item name="android:textColor">@color/listbody</item>
+    </style>
+
+    <style name="ListHeader">
+        <item name="android:textColor">@color/listheader</item>
+    </style>
+
     <style name="button_B" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/A_back</item>
         <item name="android:background">@color/colorMain</item>
